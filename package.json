@@ -7,12 +7,12 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaemin/eslint-config.git"
+    "url": "git+https://github.com/jaem1n207/eslint-config.git"
   },
   "bugs": {
-    "url": "https://github.com/jaemin/eslint-config/issues"
+    "url": "https://github.com/jaem1n207/eslint-config/issues"
   },
-  "homepage": "https://github.com/jaemin/eslint-config#readme",
+  "homepage": "https://github.com/jaem1n207/eslint-config#readme",
   "keywords": [
     "eslint",
     "eslint-config",

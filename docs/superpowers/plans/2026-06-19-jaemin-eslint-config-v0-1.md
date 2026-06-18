@@ -75,12 +75,12 @@ Replace `/Users/jaemin/programming/projects/active/eslint-config/package.json` w
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaemin/eslint-config.git"
+    "url": "git+https://github.com/jaem1n207/eslint-config.git"
   },
   "bugs": {
-    "url": "https://github.com/jaemin/eslint-config/issues"
+    "url": "https://github.com/jaem1n207/eslint-config/issues"
   },
-  "homepage": "https://github.com/jaemin/eslint-config#readme",
+  "homepage": "https://github.com/jaem1n207/eslint-config#readme",
   "keywords": [
     "eslint",
     "eslint-config",
@@ -336,7 +336,7 @@ Create `/Users/jaemin/programming/projects/active/eslint-config/src/utils/create
 import { ESLintUtils } from '@typescript-eslint/utils'
 
 export const createRule = ESLintUtils.RuleCreator(
-  (ruleName) => `https://github.com/jaemin/eslint-config/blob/main/docs/rules/${ruleName}.md`,
+  (ruleName) => `https://github.com/jaem1n207/eslint-config/blob/main/docs/rules/${ruleName}.md`,
 )
 ```
 
@@ -2470,4 +2470,4 @@ Risk notes:
 
 - `jaemin/naming-convention` is the highest-friction rule. Keep it warning-only until the dogfood report shows low noise.
 - `tanstackConfig` starts with a weak warning because TanStack-specific conventions are project-shaped. Promote only after real repeated violations appear.
-- GitHub remote creation is outside this implementation plan until the `jaemin` owner permission question is resolved.
+- GitHub remote is `https://github.com/jaem1n207/eslint-config.git`.

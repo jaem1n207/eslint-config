@@ -2,7 +2,7 @@
 
 Date: 2026-06-19
 Status: approved design draft for review
-Working name: `jaemin/eslint-config`
+Working repository: `jaem1n207/eslint-config`
 Preferred package name: `@jaemin/eslint-config`
 
 ## 1. Decision Summary
@@ -27,17 +27,17 @@ Primary v0.1 success criterion:
 
 ## 2. Naming
 
-Preferred GitHub repository:
+Chosen GitHub repository:
 
-- `jaemin/eslint-config`
+- `jaem1n207/eslint-config`
 
 Preferred npm package:
 
 - `@jaemin/eslint-config`
 
-Fallbacks are intentionally deferred. If `@jaemin` or `jaemin/eslint-config`
-is unavailable, naming should be reconsidered at setup time rather than baked
-into this design.
+The original preferred repository was `jaemin/eslint-config`, but the available
+repository for implementation is `jaem1n207/eslint-config`. The package name
+can still remain `@jaemin/eslint-config` if that npm scope is available.
 
 Recommended usage:
 
@@ -507,7 +507,7 @@ Trade-off:
 
 Recommended implementation sequence after this design is approved:
 
-1. Create `jaemin/eslint-config` repository if the name is available.
+1. Use the created `jaem1n207/eslint-config` repository.
 2. Scaffold a single-package TypeScript project.
 3. Add ESLint flat config factory with base TypeScript and React config.
 4. Add embedded `jaemin` plugin object.
