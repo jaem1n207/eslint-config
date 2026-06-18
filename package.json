@@ -1,0 +1,24 @@
+{
+  "name": "@jaemin/eslint-config",
+  "version": "0.0.0",
+  "description": "Personal opinionated ESLint flat config for Jaemin's TypeScript, React, and agent-assisted coding workflows.",
+  "license": "MIT",
+  "type": "module",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaemin/eslint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jaemin/eslint-config/issues"
+  },
+  "homepage": "https://github.com/jaemin/eslint-config#readme",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "flat-config",
+    "typescript",
+    "react"
+  ],
+  "packageManager": "pnpm@10.33.0"
+}
