@@ -1,6 +1,6 @@
 import { createRule } from '../utils/create-rule'
 
-const ALLOW_COMMENT_PATTERN = /\b(intentional ignore|ignore|noop|best effort|expected)\b/i
+const ALLOW_COMMENT_PATTERN = /\b(intentional ignore|ignore|noop|best effort|expected|gracefully handle)\b/i
 
 export const noEmptyCatchWithoutHandling = createRule({
   name: 'no-empty-catch-without-handling',

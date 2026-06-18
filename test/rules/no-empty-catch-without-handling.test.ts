@@ -8,6 +8,7 @@ ruleTester.run('no-empty-catch-without-handling', noEmptyCatchWithoutHandling, {
     'try { risky() } catch { fallback() }',
     'try { risky() } catch { /* intentional ignore: browser API may throw */ }',
     'try { risky() } catch { /* noop: best effort cleanup */ }',
+    'try { risky() } catch { /* Gracefully handle unavailable sessionStorage */ }',
   ],
   invalid: [
     {

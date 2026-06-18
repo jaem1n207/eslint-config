@@ -12,6 +12,18 @@ ruleTester.run('naming-convention', namingConvention, {
       code: 'export function useScrollSync() { return null }',
     },
     {
+      filename: 'src/hooks/use-scroll-sync.ts',
+      code: 'function savePositionToSession() { return null }\nexport function useScrollSync() { return null }',
+    },
+    {
+      filename: 'src/landing/components/sections/use-cases-section.tsx',
+      code: 'export function UseCasesSection() { return <div /> }',
+    },
+    {
+      filename: 'scripts/fetch-store-stats.ts',
+      code: 'export function fetchStoreStats() { return null }',
+    },
+    {
       filename: 'src/stores/sync-state-store.ts',
       code: 'export const syncStateStore = {}',
     },

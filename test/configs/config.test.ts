@@ -36,6 +36,9 @@ describe('jaemin config factory', () => {
       'warn',
       {
         ignore: [
+          '*.config.*',
+          '.*.config.*',
+          'eslint.config.*',
           '**/extension/_locales/**',
           '**/src/shared/i18n/_locales/**',
           '**/generated/**',

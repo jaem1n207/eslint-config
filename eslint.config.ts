@@ -6,5 +6,5 @@ export default jaemin({
   typescript: true,
   agent: 'warn',
   naming: 'warn',
-  ignores: ['dist/**', '*.config.ts', 'eslint.config.ts'],
+  ignores: ['dist/**'],
 })

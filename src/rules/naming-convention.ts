@@ -65,11 +65,11 @@ function relativeFileName(fileName: string): string {
 }
 
 function isHookContext(normalizedFileName: string, name: string): boolean {
-  return normalizedFileName.includes('/hooks/') || path.basename(normalizedFileName).startsWith('use-') || /^use[A-Z0-9]/.test(name)
+  return /^use[A-Z0-9]/.test(name) || (normalizedFileName.includes('/hooks/') && name.toLowerCase().startsWith('use'))
 }
 
-function isStoreFileContext(normalizedFileName: string, baseName: string): boolean {
-  return normalizedFileName.includes('/stores/') || baseName.includes('store')
+function isStoreFileContext(normalizedFileName: string): boolean {
+  return normalizedFileName.includes('/stores/')
 }
 
 export const namingConvention = createRule<NamingConventionOptions, MessageIds>({
@@ -150,7 +150,7 @@ export const namingConvention = createRule<NamingConventionOptions, MessageIds>(
         }
       }
 
-      if (isStoreFileContext(normalizedFileName, baseName) && !fileStem.endsWith(storeFileSuffix)) {
+      if (isStoreFileContext(normalizedFileName) && !fileStem.endsWith(storeFileSuffix)) {
         context.report({
           loc: { line: 1, column: 0 },
           messageId: 'storeFileName',

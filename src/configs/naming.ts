@@ -14,6 +14,9 @@ export function namingConfig(severity: SeveritySwitch): FlatConfigItem[] {
           severity,
           {
             ignore: [
+              '*.config.*',
+              '.*.config.*',
+              'eslint.config.*',
               '**/extension/_locales/**',
               '**/src/shared/i18n/_locales/**',
               '**/generated/**',
