@@ -2,6 +2,7 @@ import type { ESLint, Rule } from 'eslint'
 
 import { noAsAny } from './rules/no-as-any'
 import { noEmptyCatchWithoutHandling } from './rules/no-empty-catch-without-handling'
+import { noFocusedOrSkippedTests } from './rules/no-focused-or-skipped-tests'
 import { noTsIgnore } from './rules/no-ts-ignore'
 
 function toEslintRule(rule: unknown): Rule.RuleModule {
@@ -16,6 +17,7 @@ export const jaeminPlugin: ESLint.Plugin = {
   rules: {
     'no-as-any': toEslintRule(noAsAny),
     'no-empty-catch-without-handling': toEslintRule(noEmptyCatchWithoutHandling),
+    'no-focused-or-skipped-tests': toEslintRule(noFocusedOrSkippedTests),
     'no-ts-ignore': toEslintRule(noTsIgnore),
   },
 }
