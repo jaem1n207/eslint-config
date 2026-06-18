@@ -1,5 +1,6 @@
 import type { ESLint, Rule } from 'eslint'
 
+import { namingConvention } from './rules/naming-convention'
 import { noAsAny } from './rules/no-as-any'
 import { noEmptyCatchWithoutHandling } from './rules/no-empty-catch-without-handling'
 import { noFocusedOrSkippedTests } from './rules/no-focused-or-skipped-tests'
@@ -15,6 +16,7 @@ export const jaeminPlugin: ESLint.Plugin = {
     version: '0.0.0',
   },
   rules: {
+    'naming-convention': toEslintRule(namingConvention),
     'no-as-any': toEslintRule(noAsAny),
     'no-empty-catch-without-handling': toEslintRule(noEmptyCatchWithoutHandling),
     'no-focused-or-skipped-tests': toEslintRule(noFocusedOrSkippedTests),

@@ -129,6 +129,7 @@ Replace `/Users/jaemin/programming/projects/active/eslint-config/package.json` w
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@types/picomatch": "^4.0.0",
     "@typescript-eslint/rule-tester": "^8.0.0",
     "eslint": "^9.0.0",
     "tsdown": "^0.15.0",
