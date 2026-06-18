@@ -32,5 +32,13 @@ ruleTester.run('no-as-any', noAsAny, {
       code: 'const values: any[] = []',
       errors: [{ messageId: 'noExplicitAnyContainer' }],
     },
+    {
+      code: 'type Values = Array<any>',
+      errors: [{ messageId: 'noExplicitAnyContainer' }],
+    },
+    {
+      code: 'type Values = any[]',
+      errors: [{ messageId: 'noExplicitAnyContainer' }],
+    },
   ],
 })

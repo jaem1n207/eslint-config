@@ -1,7 +1,7 @@
-import type { FlatConfigItem, JaeminConfigOptions, SeveritySwitch } from './types'
 
 import { agentConfig } from './configs/agent'
 import { baseConfig } from './configs/base'
+import { importsConfig } from './configs/imports'
 import { namingConfig } from './configs/naming'
 import { reactConfig } from './configs/react'
 import { strictConfig } from './configs/strict'
@@ -10,6 +10,8 @@ import { testConfig } from './configs/test'
 import { typescriptConfig } from './configs/typescript'
 import { jaeminPlugin } from './plugin'
 import { DEFAULT_PROFILE } from './types'
+
+import type { FlatConfigItem, JaeminConfigOptions, SeveritySwitch } from './types'
 
 export type { JaeminConfigOptions, JaeminProfile, SeveritySwitch } from './types'
 export { jaeminPlugin }
@@ -67,6 +69,7 @@ export default function jaemin(options: JaeminConfigOptions = {}): FlatConfigIte
     },
     ...baseConfig(options.ignores),
     ...typescriptConfig(typescript),
+    ...importsConfig(),
     ...reactConfig(react),
     ...tanstackConfig(tanstack),
     ...testConfig(),

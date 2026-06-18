@@ -1,12 +1,13 @@
 import path from 'node:path'
 
-import type { TSESTree } from '@typescript-eslint/utils'
 
 import { AST_NODE_TYPES } from '@typescript-eslint/utils'
 
 import { isKebabCase, isPascalCase, isUseCamelCase, stripKnownExtensions } from '../utils/case'
 import { createRule } from '../utils/create-rule'
 import { normalizePath, pathMatchesAny } from '../utils/path-matches'
+
+import type { TSESTree } from '@typescript-eslint/utils'
 
 type NamingConventionOptions = [
   {

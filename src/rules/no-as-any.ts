@@ -1,8 +1,9 @@
-import type { TSESTree } from '@typescript-eslint/utils'
 
 import { AST_NODE_TYPES } from '@typescript-eslint/utils'
 
 import { createRule } from '../utils/create-rule'
+
+import type { TSESTree } from '@typescript-eslint/utils'
 
 function isAnyKeyword(node: TSESTree.TypeNode | undefined): boolean {
   return node?.type === AST_NODE_TYPES.TSAnyKeyword
@@ -58,10 +59,18 @@ export const noAsAny = createRule({
           })
         }
       },
-      TSTypeAnnotation(node) {
-        if (isArrayOfAny(node.typeAnnotation)) {
+      TSArrayType(node) {
+        if (isArrayOfAny(node)) {
           context.report({
-            node: node.typeAnnotation,
+            node,
+            messageId: 'noExplicitAnyContainer',
+          })
+        }
+      },
+      TSTypeReference(node) {
+        if (isArrayOfAny(node)) {
+          context.report({
+            node,
             messageId: 'noExplicitAnyContainer',
           })
         }

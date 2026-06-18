@@ -1,3 +1,4 @@
+import { ESLint } from 'eslint'
 import { describe, expect, it } from 'vitest'
 
 import jaemin, { jaeminPlugin } from '../../src/index'
@@ -65,5 +66,54 @@ describe('jaemin config factory', () => {
     expect(config.at(-1)).toEqual({
       name: 'jaemin/user-overrides',
     })
+  })
+
+  it('enables low-noise import rules', () => {
+    const config = jaemin()
+    const allRules = Object.assign({}, ...config.map((item) => item.rules ?? {}))
+
+    expect(allRules['import-x/no-duplicates']).toBe('error')
+  })
+
+  it('runs the flat config through ESLint for TypeScript code', async () => {
+    const eslint = new ESLint({
+      overrideConfigFile: true,
+      overrideConfig: jaemin({ naming: 'off' }),
+    })
+
+    const [result] = await eslint.lintText(
+      `const input = 'value'\nconst value = input as any\nexport { value }\n`,
+      { filePath: 'src/example.ts' },
+    )
+
+    expect(result?.messages).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          ruleId: 'jaemin/no-as-any',
+          severity: 1,
+        }),
+      ]),
+    )
+  })
+
+  it('runs import duplicate checks through ESLint', async () => {
+    const eslint = new ESLint({
+      overrideConfigFile: true,
+      overrideConfig: jaemin({ naming: 'off' }),
+    })
+
+    const [result] = await eslint.lintText(
+      `import { readFile } from 'node:fs'\nimport { writeFile } from 'node:fs'\nconsole.log(readFile, writeFile)\n`,
+      { filePath: 'src/imports.ts' },
+    )
+
+    expect(result?.messages).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          ruleId: 'import-x/no-duplicates',
+          severity: 2,
+        }),
+      ]),
+    )
   })
 })

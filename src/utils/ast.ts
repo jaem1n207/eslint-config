@@ -1,6 +1,7 @@
+import { AST_NODE_TYPES } from '@typescript-eslint/utils'
+
 import type { TSESTree } from '@typescript-eslint/utils'
 
-import { AST_NODE_TYPES } from '@typescript-eslint/utils'
 
 export function getCalleeChain(node: TSESTree.CallExpression['callee']): string[] {
   if (node.type === AST_NODE_TYPES.Identifier) {

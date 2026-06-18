@@ -1,10 +1,11 @@
-import type { ESLint, Rule } from 'eslint'
 
 import { namingConvention } from './rules/naming-convention'
 import { noAsAny } from './rules/no-as-any'
 import { noEmptyCatchWithoutHandling } from './rules/no-empty-catch-without-handling'
 import { noFocusedOrSkippedTests } from './rules/no-focused-or-skipped-tests'
 import { noTsIgnore } from './rules/no-ts-ignore'
+
+import type { ESLint, Rule } from 'eslint'
 
 function toEslintRule(rule: unknown): Rule.RuleModule {
   return rule as Rule.RuleModule

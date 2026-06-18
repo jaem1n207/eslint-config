@@ -18,7 +18,9 @@ export const noEmptyCatchWithoutHandling = createRule({
   create(context) {
     return {
       CatchClause(node) {
-        if (node.body.body.length > 0) {
+        const hasHandlingStatement = node.body.body.some((statement) => statement.type !== 'EmptyStatement')
+
+        if (hasHandlingStatement) {
           return
         }
 

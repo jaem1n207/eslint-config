@@ -22,6 +22,15 @@ Profiles:
 - `agent`: stronger AI-agent guardrails.
 - `strict`: error-oriented new-project profile.
 
+Default severities:
+
+| Profile | Agent rules | Naming rules |
+| --- | --- | --- |
+| `migration` | `warn` | `warn` |
+| `starter` | `warn` | `warn` |
+| `agent` | `error` | `warn` |
+| `strict` | `error` | `error` |
+
 Feature flags:
 
 - `typescript`

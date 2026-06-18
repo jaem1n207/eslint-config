@@ -19,5 +19,9 @@ ruleTester.run('no-empty-catch-without-handling', noEmptyCatchWithoutHandling, {
       code: 'try { risky() } catch {}',
       errors: [{ messageId: 'emptyCatch' }],
     },
+    {
+      code: 'try { risky() } catch { ; }',
+      errors: [{ messageId: 'emptyCatch' }],
+    },
   ],
 })
