@@ -45,6 +45,13 @@ export default function jaemin(options: JaeminConfigOptions = {}): FlatConfigIte
   const tanstack = options.tanstack ?? false
   const agent = options.agent ?? defaultAgentSeverity(profile)
   const naming = options.naming ?? defaultNamingSeverity(profile)
+  const userOverrides: FlatConfigItem = {
+    name: 'jaemin/user-overrides',
+  }
+
+  if (options.rules) {
+    userOverrides.rules = options.rules
+  }
 
   return [
     {
@@ -66,9 +73,6 @@ export default function jaemin(options: JaeminConfigOptions = {}): FlatConfigIte
     ...agentConfig(agent),
     ...namingConfig(naming),
     ...strictConfig(profile === 'strict'),
-    {
-      name: 'jaemin/user-overrides',
-      rules: options.rules,
-    },
+    userOverrides,
   ]
 }

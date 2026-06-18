@@ -55,4 +55,12 @@ describe('jaemin config factory', () => {
       'jaemin/no-ts-ignore': 'off',
     })
   })
+
+  it('does not emit undefined rule maps', () => {
+    const config = jaemin()
+
+    expect(config.at(-1)).toEqual({
+      name: 'jaemin/user-overrides',
+    })
+  })
 })

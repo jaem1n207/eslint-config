@@ -5,9 +5,8 @@ import type { FlatConfigItem } from '../types'
 
 export function baseConfig(ignores: string[] = []): FlatConfigItem[] {
   return [
-    js.configs.recommended,
     {
-      name: 'jaemin/base',
+      name: 'jaemin/ignores',
       ignores: [
         '**/node_modules/**',
         '**/dist/**',
@@ -16,6 +15,10 @@ export function baseConfig(ignores: string[] = []): FlatConfigItem[] {
         '**/build/**',
         ...ignores,
       ],
+    },
+    js.configs.recommended,
+    {
+      name: 'jaemin/base',
       languageOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
