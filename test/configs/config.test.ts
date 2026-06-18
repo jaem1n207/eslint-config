@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import jaemin from '../../src/index'
+import jaemin, { jaeminPlugin } from '../../src/index'
 
 describe('jaemin config factory', () => {
   it('returns a flat config array', () => {
@@ -18,5 +18,12 @@ describe('jaemin config factory', () => {
         profile: 'migration',
       },
     })
+  })
+
+  it('embeds the jaemin plugin object', () => {
+    const config = jaemin()
+
+    expect(config[0]?.plugins?.jaemin).toBe(jaeminPlugin)
+    expect(jaeminPlugin.meta?.name).toBe('@jaemin/eslint-config')
   })
 })
