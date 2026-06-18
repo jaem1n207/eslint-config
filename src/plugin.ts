@@ -1,6 +1,7 @@
 import type { ESLint, Rule } from 'eslint'
 
 import { noAsAny } from './rules/no-as-any'
+import { noEmptyCatchWithoutHandling } from './rules/no-empty-catch-without-handling'
 import { noTsIgnore } from './rules/no-ts-ignore'
 
 function toEslintRule(rule: unknown): Rule.RuleModule {
@@ -14,6 +15,7 @@ export const jaeminPlugin: ESLint.Plugin = {
   },
   rules: {
     'no-as-any': toEslintRule(noAsAny),
+    'no-empty-catch-without-handling': toEslintRule(noEmptyCatchWithoutHandling),
     'no-ts-ignore': toEslintRule(noTsIgnore),
   },
 }
