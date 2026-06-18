@@ -6,7 +6,7 @@
 
 **Architecture:** Ship one TypeScript package with a default `jaemin(options)` config factory. The package imports stable ecosystem ESLint configs, embeds a local flat-config plugin object for Jaemin-specific rules, and exposes profile/severity options for migration-first adoption.
 
-**Tech Stack:** pnpm, TypeScript, ESLint 9 flat config, `typescript-eslint`, `@typescript-eslint/utils`, `@typescript-eslint/rule-tester`, Vitest, tsdown.
+**Tech Stack:** pnpm, TypeScript, ESLint 9 flat config, `typescript-eslint`, `@typescript-eslint/utils`, `@typescript-eslint/rule-tester`, Vitest, `@vitest/eslint-plugin`, tsdown.
 
 ---
 
@@ -118,7 +118,7 @@ Replace `/Users/jaemin/programming/projects/active/eslint-config/package.json` w
     "eslint-plugin-import-x": "^4.0.0",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-vitest": "^0.5.0",
+    "@vitest/eslint-plugin": "^1.0.0",
     "globals": "^16.0.0",
     "picomatch": "^4.0.0",
     "typescript-eslint": "^8.0.0"
@@ -129,6 +129,7 @@ Replace `/Users/jaemin/programming/projects/active/eslint-config/package.json` w
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@types/picomatch": "^4.0.0",
     "@typescript-eslint/rule-tester": "^8.0.0",
     "eslint": "^9.0.0",
     "tsdown": "^0.15.0",
@@ -1651,7 +1652,7 @@ export function tanstackConfig(enabled: boolean): FlatConfigItem[] {
 Create `/Users/jaemin/programming/projects/active/eslint-config/src/configs/test.ts`:
 
 ```ts
-import vitestPlugin from 'eslint-plugin-vitest'
+import vitestPlugin from '@vitest/eslint-plugin'
 
 import type { FlatConfigItem } from '../types'
 
