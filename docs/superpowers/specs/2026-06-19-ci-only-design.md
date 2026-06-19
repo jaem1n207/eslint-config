@@ -62,6 +62,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   check:
     runs-on: ubuntu-latest
