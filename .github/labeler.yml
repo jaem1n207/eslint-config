@@ -1,0 +1,59 @@
+'area:ci':
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/**'
+
+'area:docs':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'docs/**'
+          - 'README.md'
+
+'area:rules':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/rules/**'
+          - 'docs/rules/**'
+
+'area:configs':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/configs/**'
+          - 'src/index.ts'
+
+'area:plugin':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/plugin.ts'
+
+'area:tests':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'test/**'
+          - '**/*.test.ts'
+
+'area:package':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'package.json'
+          - 'pnpm-lock.yaml'
+          - 'tsdown.config.ts'
+          - 'tsconfig.json'
+
+'type:feature':
+  - head-branch:
+      - '^feat[/-]'
+      - '^feature[/-]'
+
+'type:fix':
+  - head-branch:
+      - '^fix[/-]'
+      - '^hotfix[/-]'
+
+'type:docs':
+  - head-branch:
+      - '^docs[/-]'
+
+'status:needs-review':
+  - base-branch:
+      - '^main$'
