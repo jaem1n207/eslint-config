@@ -135,7 +135,7 @@ Create `/Users/jaemin/programming/projects/active/eslint-config/.github/labeler.
   - head-branch:
       - '^docs[/-]'
 
-'status:needs-review':
+'target:main':
   - base-branch:
       - '^main$'
 ```
