@@ -4,7 +4,7 @@
 
 **Goal:** Add PR label automation and draft release-note automation for `@jaemin/eslint-config` while preserving the existing `pnpm check` CI contract.
 
-**Architecture:** Keep `.github/workflows/check.yml` unchanged as the authoritative quality gate. Add one label-only `pull_request_target` workflow, `.github/labeler.yml`, one Release Drafter workflow, and `.github/release-drafter.yml`; the release workflow creates or updates a GitHub draft release only and does not publish npm packages, create tags, or edit package metadata.
+**Architecture:** Keep `.github/workflows/check.yml` unchanged as the authoritative quality gate. Add one label-only `pull_request_target` workflow, `.github/labeler.yml`, one Release Drafter workflow, and `.github/release-drafter.yml`; the release workflow creates or updates a GitHub draft release with an associated tag name, but does not publish npm packages or edit package metadata.
 
 **Tech Stack:** GitHub Actions, actions/labeler pinned to `v6.1.0`, release-drafter pinned to `v7.5.1`, existing pnpm/Node CI.
 
@@ -196,11 +196,12 @@ jobs:
         uses: release-drafter/release-drafter@3832cfb52f98ab0f0e5b62aecf94909e334d4da6 # v7.5.1
         with:
           config-name: release-drafter.yml
+          publish: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-Expected: The workflow updates a draft GitHub release only; it does not checkout code, publish npm packages, or create tags.
+Expected: The workflow updates a draft GitHub release only; it does not checkout code, publish npm packages, or mutate package metadata. The draft release uses `tag-template` for its associated release tag name, and publishing remains manual.
 
 - [ ] **Step 2: Add the Release Drafter config**
 
@@ -214,32 +215,54 @@ change-title-escapes: '\<*_&`#@'
 no-changes-template: '- No user-facing changes'
 
 categories:
-  - title: 'Rules'
-    labels:
-      - 'area:rules'
-    semver-increment: minor
-  - title: 'Config Presets'
-    labels:
-      - 'area:configs'
-      - 'area:plugin'
-    semver-increment: minor
-  - title: 'Fixes'
-    labels:
-      - 'type:fix'
-      - 'bug'
-    semver-increment: patch
-  - title: 'Documentation'
-    labels:
-      - 'area:docs'
-      - 'type:docs'
-  - title: 'Tests and CI'
-    labels:
-      - 'area:tests'
-      - 'area:ci'
-      - 'area:package'
   - type: 'pre-exclude'
     when:
       label: 'skip-changelog'
+  - title: 'Fixes'
+    exclusive: true
+    when:
+      labels:
+        - 'type:fix'
+        - 'bug'
+  - title: 'Documentation'
+    exclusive: true
+    when:
+      labels:
+        - 'area:docs'
+        - 'type:docs'
+  - title: 'Rules'
+    exclusive: true
+    when:
+      label: 'area:rules'
+  - title: 'Config Presets'
+    exclusive: true
+    when:
+      labels:
+        - 'area:configs'
+        - 'area:plugin'
+  - title: 'Tests and CI'
+    exclusive: true
+    when:
+      labels:
+        - 'area:tests'
+        - 'area:ci'
+        - 'area:package'
+  - title: 'Other Changes'
+    exclusive: true
+  - type: 'version-resolver'
+    semver-increment: 'minor'
+    when:
+      label: 'type:feature'
+  - type: 'version-resolver'
+    semver-increment: 'patch'
+    when:
+      labels:
+        - 'type:fix'
+        - 'type:docs'
+        - 'area:docs'
+        - 'area:tests'
+        - 'area:ci'
+        - 'area:package'
   - type: 'version-resolver'
     semver-increment: 'patch'
 
@@ -251,7 +274,7 @@ template: |
   $CHANGES
 ```
 
-Expected: Draft notes group rule/config work separately and default to patch version resolution without publishing anything.
+Expected: Draft notes group changes into one changelog category per PR, exclude `skip-changelog`, and default to patch version resolution. Minor version resolution is driven by explicit `type:feature` labels rather than broad area labels.
 
 - [ ] **Step 3: Validate Release Drafter files**
 
@@ -299,6 +322,6 @@ Expected: One commit contains only Release Drafter workflow/config files.
 
 - [ ] The existing `Check` workflow remains unchanged.
 - [ ] Release Drafter updates only GitHub draft releases.
-- [ ] No npm publish, tag creation, rule default, or package metadata changes are included.
+- [ ] No npm publish, rule default, or package metadata changes are included.
 - [ ] Labeler uses `pull_request_target` without checkout or code execution.
 - [ ] All third-party actions are pinned to full commit SHA.

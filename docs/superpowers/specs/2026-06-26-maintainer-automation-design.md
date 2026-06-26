@@ -72,8 +72,9 @@ Add Release Drafter as a draft-only changelog assistant:
 
 - Use `release-drafter/release-drafter@v7.5.1`, pinned to `3832cfb52f98ab0f0e5b62aecf94909e334d4da6` during implementation.
 - Trigger on pushes to `main`.
-- Generate a draft release grouped by labels: features, fixes, docs, rule/config changes, and maintenance.
-- Do not publish to npm, create tags, or change package metadata.
+- Generate a draft release grouped by labels: fixes, docs, rule/config changes, tests/CI, and maintenance.
+- Drive version resolution from explicit type labels, not broad area labels, so fix/docs PRs that touch rule or config files are not over-bumped.
+- Do not publish to npm or change package metadata. Release Drafter maintains a draft GitHub release with an associated tag name; publishing remains manual.
 
 Optional stale handling:
 

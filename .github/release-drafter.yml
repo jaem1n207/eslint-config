@@ -5,32 +5,54 @@ change-title-escapes: '\<*_&`#@'
 no-changes-template: '- No user-facing changes'
 
 categories:
-  - title: 'Rules'
-    labels:
-      - 'area:rules'
-    semver-increment: minor
-  - title: 'Config Presets'
-    labels:
-      - 'area:configs'
-      - 'area:plugin'
-    semver-increment: minor
-  - title: 'Fixes'
-    labels:
-      - 'type:fix'
-      - 'bug'
-    semver-increment: patch
-  - title: 'Documentation'
-    labels:
-      - 'area:docs'
-      - 'type:docs'
-  - title: 'Tests and CI'
-    labels:
-      - 'area:tests'
-      - 'area:ci'
-      - 'area:package'
   - type: 'pre-exclude'
     when:
       label: 'skip-changelog'
+  - title: 'Fixes'
+    exclusive: true
+    when:
+      labels:
+        - 'type:fix'
+        - 'bug'
+  - title: 'Documentation'
+    exclusive: true
+    when:
+      labels:
+        - 'area:docs'
+        - 'type:docs'
+  - title: 'Rules'
+    exclusive: true
+    when:
+      label: 'area:rules'
+  - title: 'Config Presets'
+    exclusive: true
+    when:
+      labels:
+        - 'area:configs'
+        - 'area:plugin'
+  - title: 'Tests and CI'
+    exclusive: true
+    when:
+      labels:
+        - 'area:tests'
+        - 'area:ci'
+        - 'area:package'
+  - title: 'Other Changes'
+    exclusive: true
+  - type: 'version-resolver'
+    semver-increment: 'minor'
+    when:
+      label: 'type:feature'
+  - type: 'version-resolver'
+    semver-increment: 'patch'
+    when:
+      labels:
+        - 'type:fix'
+        - 'type:docs'
+        - 'area:docs'
+        - 'area:tests'
+        - 'area:ci'
+        - 'area:package'
   - type: 'version-resolver'
     semver-increment: 'patch'
 
